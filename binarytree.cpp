@@ -6,6 +6,26 @@ static int i=0;
 	struct node *left;
 	struct node *right;
 };
+node *insertnode(node *root,int data)
+{
+	node *temp = new node();
+temp->data=data;
+temp->left='\0';
+temp->right='\0';
+	if(root==NULL)
+	{
+		return temp;
+	}
+	else if(data>root->data){
+		root->right=insertnode(root->right,data);}
+	else if(data<root->data)
+		{
+		root->left=insertnode(root->left,data);}
+
+	return root;
+	
+	
+}
 node *root='\0';
 node *createnode(int n)
 {
@@ -240,9 +260,9 @@ struct node* deletenode(node *root,int find)
 	}
 	return root;
 }
-int maxDepth(struct node* root,int key)  
+int maxDepth(struct node* root)  
 { 
-   if (root==NULL || root->data==key)  
+   if (root==NULL)  
        return 0; 
    else 
    { 
@@ -258,13 +278,13 @@ int maxDepth(struct node* root,int key)
 }
 int main()
 {
-	insert(50); 
-    insert(30); 
-    insert(20); 
-    insert(40); 
-    insert(70); 
-    insert(60); 
-    insert(80); 
+	root=insertnode(root,50); 
+    root=insertnode(root,30); 
+    root=insertnode(root,20); 
+    root=insertnode(root,40); 
+    root=insertnode(root,70); 
+    root=insertnode(root,60); 
+    root=insertnode(root,80); 
 	/*if(search(root,40)=='\0')
 	cout<<"not found";
 	else
@@ -273,6 +293,7 @@ int main()
 	//print(root);
 	//print(deletenode(root,30));
 	//cout<<i;
-	cout<<maxDepth(root,70);
+	//cout<<maxDepth(root,70);
+	inorder(root);
 	return(0);
 }
